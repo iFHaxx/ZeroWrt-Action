@@ -65,6 +65,12 @@ jobs:
       working-directory: ${{ github.workspace }}/openwrt
       run: |
         cp -rf ../SCRIPTS/AW100/config.seed .config
+
+    - name: Download xray-core IPK for ipq807x
+      run: |
+        mkdir -p files/tmp/xray
+        cd files/tmp/xray
+        wget https://github.com/yichya/openwrt-xray/releases/download/v1.8.5/openwrt-xray_1.8.5-1_aarch64_cortex-a53.ipk
         
 #    - name: Convert Translation
 #      working-directory: ${{ github.workspace }}/openwrt
