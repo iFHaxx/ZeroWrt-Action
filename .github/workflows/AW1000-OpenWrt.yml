@@ -51,6 +51,8 @@ jobs:
         cp -r ./SCRIPTS/AW100/. ./SCRIPTS/
         cp -r ./SCRIPTS/. ./
         /bin/bash 01_get_ready.sh
+
+        sed -i 's/option ipaddr '10.0.0.1'/option ipaddr '192.168.1.1'/g' $GITHUB_WORKSPACE/openwrt/package/base-files/files/etc/config/network
         
     - name: Prepare Package
       working-directory: ${{ github.workspace }}/openwrt
