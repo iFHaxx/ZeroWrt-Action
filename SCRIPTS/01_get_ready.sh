@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# 这个脚本的作用是从不同的仓库中克隆openwrt相关的代码，并进行一些处理
+# This script clones OpenWrt related code from different repositories and performs some processing.
 
-# 定义一个函数，用来克隆指定的仓库和分支
+# Define a function to clone the specified repository and branch
 clone_repo() {
-  # 参数1是仓库地址，参数2是分支名，参数3是目标目录
+  # Argument 1 is the repository URL, Argument 2 is the branch name, Argument 3 is the target directory
   repo_url=$1
   branch_name=$2
   target_dir=$3
-  # 克隆仓库到目标目录，并指定分支名和深度为1
+  # Clone the repository to the target directory, specify the branch name and depth 1
   git clone -b $branch_name --depth 1 $repo_url $target_dir
 }
 
-# 定义一些变量，存储仓库地址和分支名
+# Define variables to store repository URLs and branch names
 openwrt_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][4-9]/p' | sed -n 1p | sed 's/.tar.gz//g')"
 immortalwrt_release="$(curl -s https://github.com/immortalwrt/immortalwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][4-9]/p' | sed -n 1p | sed 's/.tar.gz//g')"
 openwrt_repo="https://github.com/openwrt/openwrt.git"
@@ -24,7 +24,7 @@ dockerman_repo="https://github.com/oppen321/luci-app-dockerman"
 golang_repo="https://github.com/sbwml/packages_lang_golang"
 node_repo="https://github.com/sbwml/feeds_packages_lang_node-prebuilt"
 nginx_repo="https://github.com/oppen321/feeds_packages_net_nginx"
-default_settings="https://github.com/oppen321/default-settings"
+default_settings="https://github.com/iFHaxx/default-settings"
 miniupnpd_repo="https://git.kejizero.online/zhao/miniupnpd"
 upnp_repo="https://git.kejizero.online/zhao/luci-app-upnp"
 docker_repo="https://git.kejizero.online/zhao/packages_utils_docker"
@@ -40,7 +40,7 @@ urngd_repo="https://github.com/sbwml/package_system_urngd"
 samba4_repo="https://github.com/sbwml/feeds_packages_net_samba4"
 liburing_repo="https://github.com/sbwml/feeds_packages_libs_liburing"
 
-# 开始克隆仓库，并行执行
+# Start cloning repositories and execute in parallel
 clone_repo $openwrt_repo $openwrt_release openwrt &
 clone_repo $immortalwrt_repo $immortalwrt_release immortalwrt &
 clone_repo $openwrt_repo main openwrt_main
@@ -69,14 +69,14 @@ clone_repo $urngd_repo main urngd
 clone_repo $samba4_repo main samba4
 clone_repo $liburing_repo main liburing
 
-# 等待所有后台任务完成
+# Wait for all background tasks to complete
 wait
 
-# 进行一些处理
+# Perform some processing
 find openwrt/package/* -maxdepth 0 ! -name 'firmware' ! -name 'kernel' ! -name 'base-files' ! -name 'Makefile' -exec rm -rf {} +
 rm -rf ./openwrt_24/package/firmware ./openwrt_snap/package/kernel ./openwrt_snap/package/base-files ./openwrt_snap/package/Makefile
 cp -rf ./openwrt_24/package/* ./openwrt/package/
 cp -rf ./openwrt_24/feeds.conf.default ./openwrt/feeds.conf.default
 
-# 退出脚本
+# Exit the script
 exit 0
