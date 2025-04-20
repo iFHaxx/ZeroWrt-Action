@@ -46,6 +46,7 @@ CTTL="https://github.com/iFHaxx/luci-app-ttl"
 IDT="https://github.com/iFHaxx/luci-app-internet-detector"
 IDTM="https://github.com/iFHaxx/internet-detector"
 MMBN="https://github.com/iFHaxx/modemband"
+IQB="https://github.com/iFHaxx/luci-app-irqbalance"
 
 # Start cloning repositories and execute in parallel
 clone_repo $openwrt_repo $openwrt_release openwrt &
@@ -82,6 +83,7 @@ clone_repo $CTTL main luci-app-ttl
 clone_repo $IDT main luci-app-internet-detector
 clone_repo $IDTM main internet-detector
 clone_repo $MMBN main modemband
+clone_repo $IQB main luci-app-irqbalance
 
 # Wait for all background tasks to complete
 wait
