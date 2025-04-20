@@ -1,4 +1,4 @@
-name: X86-OpenWrt
+name: AW1000-OpenWrt
 
 on:
 #  schedule:
