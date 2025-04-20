@@ -66,7 +66,9 @@ sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/ut
 sed -i 's/OpenWrt/DotyWRT/' package/base-files/files/bin/config_generate
 
 # Banner
-cp -rf ../openwrt-package/banner  ./package/base-files/files/etc/banner
+# cp -rf ../openwrt-package/banner  ./package/base-files/files/etc/banner
+
+curl -o ./package/base-files/files/etc/banner https://raw.githubusercontent.com/iFHaxx/BANNER/main/banner
 
 ### FW4 ###
 rm -rf ./package/network/config/firewall4
