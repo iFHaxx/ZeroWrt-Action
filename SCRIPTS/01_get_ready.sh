@@ -38,6 +38,11 @@ curl_repo="https://github.com/sbwml/feeds_packages_net_curl"
 urngd_repo="https://github.com/sbwml/package_system_urngd"
 samba4_repo="https://github.com/sbwml/feeds_packages_net_samba4"
 liburing_repo="https://github.com/sbwml/feeds_packages_libs_liburing"
+ATC0M="https://github.com/iFHaxx/luci-app-atcommands"
+INFO3G="https://github.com/iFHaxx/luci-app-3ginfo-lite"
+MBAN="https://github.com/iFHaxx/luci-app-modemband"
+SMSJS="https://github.com/iFHaxx/luci-app-sms-tool-js"
+CTTL="https://github.com/iFHaxx/luci-app-ttl"
 
 # Start cloning repositories and execute in parallel
 clone_repo $openwrt_repo $openwrt_release openwrt &
@@ -66,6 +71,11 @@ clone_repo $curl_repo main curl
 clone_repo $urngd_repo main urngd
 clone_repo $samba4_repo main samba4
 clone_repo $liburing_repo main liburing
+clone_repo $MTCOM main luci-app-atcommands
+clone_repo $INFO3G main luci-app-3ginfo-lite
+clone_repo $MBAN main luci-app-modemband
+clone_repo $SMSJS main luci-app-sms-tool-js
+clone_repo $CTTL main luci-app-ttl
 
 # Wait for all background tasks to complete
 wait
