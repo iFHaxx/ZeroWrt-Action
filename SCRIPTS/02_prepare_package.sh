@@ -50,14 +50,6 @@ mkdir -p files/root
 curl -so files/root/.bash_profile https://git.kejizero.online/zhao/files/raw/branch/main/root/.bash_profile
 curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/main/root/.bashrc
 
-# Switch to ImmortalWrt U-Boot and Target (Qualcomm IPQ807x only)
-#rm -rf target/linux/qualcommax
-#cp -rf ../immortalwrt/target/linux/qualcommax target/linux/qualcommax
-#rm -rf package/boot/uboot-ipq807x
-#cp -rf ../immortalwrt/package/boot/uboot-ipq807x package/boot/uboot-ipq807
-#sed -i '/REQUIRE_IMAGE_METADATA/d' target/linux/qualcommax/armv8/base-files/lib/upgrade/platform.sh
-
-
 # Disable Mitigations
 sed -i 's,rootwait,rootwait mitigations=off,g' target/linux/qualcommax/image/default.bootscript
 sed -i 's,@CMDLINE@ noinitrd,noinitrd mitigations=off,g' target/linux/qualcommax/image/grub-efi.cfg
