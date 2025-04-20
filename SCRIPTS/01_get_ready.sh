@@ -43,6 +43,8 @@ INFO3G="https://github.com/iFHaxx/luci-app-3ginfo-lite"
 MBAN="https://github.com/iFHaxx/luci-app-modemband"
 SMSJS="https://github.com/iFHaxx/luci-app-sms-tool-js"
 CTTL="https://github.com/iFHaxx/luci-app-ttl"
+IDT="https://github.com/iFHaxx/luci-app-internet-detector"
+IDTM="https://github.com/iFHaxx/internet-detector"
 
 # Start cloning repositories and execute in parallel
 clone_repo $openwrt_repo $openwrt_release openwrt &
@@ -76,6 +78,8 @@ clone_repo $INFO3G main luci-app-3ginfo-lite
 clone_repo $MBAN main luci-app-modemband
 clone_repo $SMSJS main luci-app-sms-tool-js
 clone_repo $CTTL main luci-app-ttl
+clone_repo $IDT main luci-app-internet-detector
+clone_repo $IDTM main internet-detector
 
 # Wait for all background tasks to complete
 wait
